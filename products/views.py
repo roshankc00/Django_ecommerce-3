@@ -51,6 +51,9 @@ class CategoryView(APIView):
         
         
 class ProductView(APIView):
+    renderer_classes=[ProdCatRenderer]
+    # authentication_classes=[JWTAuthentication]
+    # permission_classes=[IsAuthenticatedOrReadOnly]
     def post(self,request,pk=None,format=None):
         serializer=ProductSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
